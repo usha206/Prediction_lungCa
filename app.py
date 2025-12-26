@@ -4,9 +4,9 @@ import numpy as np
 from PIL import Image
 import os
 
-# Load the SavedModel using tf.keras.saving.load_model
-# This is the recommended way to load Keras 3 models saved with model.export()
-model = tf.keras.saving.load_model("saved_model")
+# Load the SavedModel using tf.keras.models.load_model
+# This is the standard way to load SavedModels with TensorFlow 2.x
+model = tf.keras.models.load_model("saved_model")
 
 IMG_SIZE = 224   # change if your model used a different size
 CLASSES = ["Control Group", "DM Group"]  # update as per your labels
@@ -61,5 +61,3 @@ st.info("""
 This application is intended for research and educational purposes only.
 It is NOT a diagnostic medical device.
 """)
-
-!streamlit run app.py
