@@ -4,11 +4,9 @@ import numpy as np
 from PIL import Image
 import os
 
-# Load saved model directory using TFSMLayer for Keras 3 SavedModel format
-# The endpoint name 'serve' was indicated during model.export()
-model = tf.keras.models.Sequential([
-    tf.keras.layers.TFSMLayer("saved_model", call_endpoint='serve')
-])
+# Load the SavedModel using tf.keras.saving.load_model
+# This is the recommended way to load Keras 3 models saved with model.export()
+model = tf.keras.saving.load_model("saved_model")
 
 IMG_SIZE = 224   # change if your model used a different size
 CLASSES = ["Control Group", "DM Group"]  # update as per your labels
@@ -63,3 +61,5 @@ st.info("""
 This application is intended for research and educational purposes only.
 It is NOT a diagnostic medical device.
 """)
+
+!streamlit run app.py
